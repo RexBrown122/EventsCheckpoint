@@ -9,23 +9,17 @@ namespace EventCheckpoint
     public event EventHandler<FileWriteComplete> FileCompleteEvent;
     public FileWriter() { }
 
-    public static async Task appendString(string str, string txtfile)
+    public void appendString(string str, string txtfile)
     {
       using StreamWriter file = new(txtfile, append: true);
-      await file.WriteLineAsync(str);
-      FileWriteComplete resultEvent = new FileWriteComplete(str);
-      resultEvent.complete(str);
-
+      file.WriteLine(str);
+      onRaiseFileWriteCompleteEvent(new FileWriteComplete(str));
     }
 
-    // public void onRaiseFileWriteCompleteEvent(FileWriteComplete e)
-    // { }
-    public delegate void MessageDelegate(string message, string textFileName);
-
-    public static void MessageMethod(string message, string textFileName)
+    protected virtual void onRaiseFileWriteCompleteEvent(FileWriteComplete message)
     {
-      FileWriter asd = new FileWriter();
-      Console.WriteLine("hi: " + message);
+      EventHandler<FileWriteComplete> raiseEvent = FileCompleteEvent;
+      raiseEvent(this, message);
     }
   }
 }

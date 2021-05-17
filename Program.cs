@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EventCheckpoint
+﻿namespace EventCheckpoint
 {
   class Program
   {
@@ -9,12 +7,9 @@ namespace EventCheckpoint
       string str = "New Line of Text";
       string file = "text.txt";
       var FileWriter = new FileWriter();
-      // var display = new DisplayService(file);
+      var display = new DisplayService(FileWriter);
+      // var display2 = new DisplayService(FileWriter);
       FileWriter.appendString(str, file);
-
-
-      //   MessageDelegate messageHandler = MessageMethod;
-      //   messageHandler("cascascascs", "text.txt");
     }
   }
 }

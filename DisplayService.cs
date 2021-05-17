@@ -4,13 +4,11 @@ namespace EventCheckpoint
 {
   public class DisplayService
   {
-    // display string to console
-    // display "File Write Completed" when it received event
     public DisplayService(FileWriter pub) => pub.FileCompleteEvent += sendMessage;
 
-    public void sendMessage(object sender, FileWriteComplete e)
+    public void sendMessage(object sender, FileWriteComplete args)
     {
-      Console.WriteLine($"Wrote: \"{e.Message}\", File Write Completed");
+      Console.WriteLine($"Wrote: \"{args.Message}\", File Write Completed");
     }
   }
 }

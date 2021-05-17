@@ -10,10 +10,5 @@ namespace EventCheckpoint
     {
       Message = message;
     }
-
-    public void complete(string message)
-    {
-
-    }
   }
 }
